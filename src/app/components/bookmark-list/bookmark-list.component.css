@@ -5,24 +5,60 @@
 
 .url {
     padding: 2px 10px;
-    min-width: 400px;
+    min-width: 70vw;
 }
 
-.edit {
+.buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.edit, .delete {
     display: flex;
     justify-content: center;
 }
 
-.edit, .delete {
-    width: 60px;
+.edit > button, .delete > button {
+    display: flex;
+    justify-content: center;
+    width: 100%;
 }
 
-.bookmark-list-table {
+.bookmark-list {
     width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.bookmark-item {
+    display: flex;
+    flex-direction: row;
+    padding: 5px 0;
+    border-bottom: 1px solid lightgrey;
+    align-items: center;
+    min-height: 50px;
+}
+
+@media only screen and (min-width: 600px) {
+    .buttons {
+        flex-direction: row;
+        min-width: 150px;
+        justify-content: space-evenly;
+    }
+    .url {
+        min-width: 400px;
+    }
+
 }
 
 .pagination-container {
     display: flex;
     width: 100%;
     justify-content: center;
+    margin-top: 10px;
+}
+
+.pagination-buttons {
+    border: none;
 }

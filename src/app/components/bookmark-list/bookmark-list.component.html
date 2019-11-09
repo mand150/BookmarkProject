@@ -1,32 +1,33 @@
-<table class="bookmark-list-table" *ngIf="bookmarks?.length > 0">
-<!--     <tr>
-        <th>Bookmark</th>
-        <th>Edit</th>
-        <th>Delete</th>
-    </tr> -->
-    <tr *ngFor="let bookmark of currentPageBookmarksObject">
-        <td class="url">
+<div class="bookmark-list" *ngIf="bookmarks?.length > 0">
+
+    <div *ngFor="let bookmark of currentPageBookmarksObject" class="bookmark-item">
+        <div class="url">
             <ng-container *ngIf="bookmark.isEditing; else urlDisplay">
                 <app-url-form [url]="bookmark.url"></app-url-form>
             </ng-container>
             <ng-template #urlDisplay>{{bookmark.url}}</ng-template>
 
-        </td>
-        <td>
+        </div>
+        <div class="buttons">
             <div class="edit">
                 <button (click)="bookmark.isEditing = !bookmark.isEditing">
                     <ng-container *ngIf="bookmark.isEditing; else editing">Cancel</ng-container>
                     <ng-template #editing>Edit</ng-template>
                 </button>
             </div>
-        </td>        
-        <td class="delete">
-            <button (click)="deleteBookmark(bookmark.url)">Delete</button>
-        </td>
-    </tr>
-</table>
+            <div class="delete">
+                <button (click)="deleteBookmark(bookmark.url)">Delete</button>
+            </div>
+        </div>        
+
+    </div>
+</div>
 <div class="pagination-container">
     <div *ngFor="let page of pages">
-        <button [disabled]="page === currentPage" [ngClass]="{'selected': page === currentPage}" (click)="onPageChange(page)">{{page + 1}}</button>
+        <button [disabled]="page === currentPage"
+            class="pagination-buttons"
+            [ngClass]="{'selected': page === currentPage}"
+            (click)="setCurrentPage(page)">{{page + 1}}
+        </button>
     </div>
 </div>

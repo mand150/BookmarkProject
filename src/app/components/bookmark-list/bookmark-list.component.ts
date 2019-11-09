@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BookmarkService } from '../../../../src/app/services/bookmark.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 const pageSize = 20;
 
@@ -18,7 +18,8 @@ export class BookmarkListComponent implements OnInit {
     pages: number[];
 
     constructor(private readonly bookmarkService: BookmarkService,
-        private readonly router: ActivatedRoute) { }
+        private readonly route: ActivatedRoute,
+        private readonly router: Router) { }
 
     ngOnInit() {
         this.getBookmarks();
@@ -30,8 +31,8 @@ export class BookmarkListComponent implements OnInit {
 
             // check if page number provided as query param and apply
             // unsubscribe not necessary https://angular.io/guide/router#observable-parammap-and-component-reuse
-            this.router.queryParams.subscribe((queryParms) => {
-                if (queryParms.page && queryParms.page <= numberOfPages) {
+            this.route.queryParams.subscribe((queryParms) => {
+                 if (queryParms.page && queryParms.page <= numberOfPages) {
                     this.currentPage = queryParms.page - 1;
                 }
                this.setCurrentPageBookmarks();
@@ -41,7 +42,7 @@ export class BookmarkListComponent implements OnInit {
     }
 
     setCurrentPage(i) {
-        this.currentPage = i;
+        this.router.navigate([], { relativeTo: this.route, queryParams: { page: i + 1}});
     }
 
     // Based on the current page and page size, set the bookmarks for the relevant page
@@ -54,12 +55,6 @@ export class BookmarkListComponent implements OnInit {
     // Get the bookmarks using the bookmark service
     getBookmarks() {
         this.bookmarks = this.bookmarkService.getBookmarks();
-    }
-
-    // When a user uses the pagination set the current page and then change the set of bookmarks to be displayed
-    onPageChange(i) {
-        this.setCurrentPage(i);
-        this.setCurrentPageBookmarks();
     }
 
     // When a user clicks a delete button, delete the bookmark using the bookmark service 

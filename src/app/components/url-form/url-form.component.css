@@ -1,3 +1,7 @@
+.input-errors-container {
+    display: inline;
+}
+
 .url-input {
     width: 250px;
     min-width: 250px;
@@ -7,26 +11,47 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 80px;
+    height: 100px;
     justify-content: space-between;
 }
 .main-form .url-input {
     width: 50vw;
     font-size: 1.1em;
     border-bottom: none;
+    border-radius: 2px;
+    padding: 10px;
     box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
 }
 
 .main-form .url-input::placeholder {
-    font-size: 0.9em;
+    font-size: 0.8em;
 }
 
 .main-form .submit-button {
-    background: #7A9EB8;
-    color: #34495E;
+    background: #5A7DA0;
+    color: #0C1118;
     font-size: 1.1em;
     border: none;
     border-radius: 2px;
+}
+
+.main-form .submit-button:disabled {
+    background: #9CACBC;
+    color: #42464B;
+}
+
+.main-form .error {
+    margin-top: 2px;
+    align-self: flex-start;
+}
+
+.standard-form {
+    display: flex;
+    flex-direction: row;
+}
+
+.standard-form .submit-button {
+    align-self: center;
 }
 
 .error {
