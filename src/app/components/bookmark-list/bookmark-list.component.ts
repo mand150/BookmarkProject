@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BookmarkService } from 'src/app/services/bookmark.service';
+import { BookmarkService } from '../../../../src/app/services/bookmark.service';
 import { ActivatedRoute } from '@angular/router';
 
 const pageSize = 20;

@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FormControl, Validators, AbstractControl } from '@angular/forms';
 import { of } from 'rxjs';
 import { Router } from '@angular/router';
-import { BookmarkService } from 'src/app/services/bookmark.service';
+import { BookmarkService } from '../../../../src/app/services/bookmark.service';
 
 
 @Component({
