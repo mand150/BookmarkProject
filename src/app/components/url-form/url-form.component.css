@@ -1,0 +1,36 @@
+.url-input {
+    width: 250px;
+    min-width: 250px;
+}
+
+.main-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 80px;
+    justify-content: space-between;
+}
+.main-form .url-input {
+    width: 50vw;
+    font-size: 1.1em;
+    border-bottom: none;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+}
+
+.main-form .url-input::placeholder {
+    font-size: 0.9em;
+}
+
+.main-form .submit-button {
+    background: #7A9EB8;
+    color: #34495E;
+    font-size: 1.1em;
+    border: none;
+    border-radius: 2px;
+}
+
+.error {
+    margin-left: 10px;
+}
+
+

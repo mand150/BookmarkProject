@@ -1,0 +1,28 @@
+.selected {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.url {
+    padding: 2px 10px;
+    min-width: 400px;
+}
+
+.edit {
+    display: flex;
+    justify-content: center;
+}
+
+.edit, .delete {
+    width: 60px;
+}
+
+.bookmark-list-table {
+    width: 100%;
+}
+
+.pagination-container {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}

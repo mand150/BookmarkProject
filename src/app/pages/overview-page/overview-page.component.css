@@ -1,0 +1,18 @@
+.bookmark-list-section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-top: 30px;
+}
+
+.bookmark-list-container {
+
+}
+
+.url-form-container {
+    padding: 75px 0 50px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background: #34495e;
+}

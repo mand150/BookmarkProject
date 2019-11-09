@@ -1,0 +1,21 @@
+<form [ngClass]="{'main-form': !url}">
+    <input [formControl]="urlInput" type="url" placeholder="Add a bookmark" aria-label="url input" class="url-input">
+ 
+    <div class="error"
+        *ngIf="!urlInput.pristine && urlInput.hasError('pattern')"
+        role="alert"
+        aria-live="polite">Please enter a valid URL
+    </div>
+    <div class="error"
+        *ngIf="!urlInput.pristine && urlInput.hasError('doesNotExist')"
+        role="alert"
+        aria-live="polite">The URL does not exist
+    </div>
+    <div class="error"
+        *ngIf="error"
+        role="alert"
+        aria-live="assertive">{{error}}
+    </div>
+
+    <button type="submit" (click)="onSubmit()" [disabled]="!urlInput.valid" class="submit-button">Submit</button>
+</form>

@@ -1,0 +1,18 @@
+.page-container {
+    background: #ecf0f1;
+    min-width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.content-container {
+    display: flex;
+    min-height: 80px;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 50px 40px;
+    color: #34495e;
+    background: #f5f6fa;
+}
