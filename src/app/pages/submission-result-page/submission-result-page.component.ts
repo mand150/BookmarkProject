@@ -13,6 +13,8 @@ export class SubmissionResultPageComponent implements OnInit {
     constructor(private readonly route: ActivatedRoute) { }
 
     ngOnInit() {
+        // get the url query param for display
+        // unsubscribe not necessary https://angular.io/guide/router#observable-parammap-and-component-reuse
         this.route.queryParams.subscribe((params) => {
             this.url = params.url || undefined;
         });

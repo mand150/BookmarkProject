@@ -24,10 +24,15 @@ export class BookmarkListComponent implements OnInit {
         this.getBookmarks();
         const bookmarkLength = this.bookmarks ? this.bookmarks.length : 0;
         if (bookmarkLength > 0) {
-            this.pages = [...Array(Math.ceil(bookmarkLength / 20)).keys()]
+            // Create a simple array with a length that matches the number of pages
+            const numberOfPages = Math.ceil(bookmarkLength / pageSize);
+            this.pages = [...Array(numberOfPages).keys()]
+
+            // check if page number provided as query param and apply
+            // unsubscribe not necessary https://angular.io/guide/router#observable-parammap-and-component-reuse
             this.router.queryParams.subscribe((queryParms) => {
-                if (queryParms.page) {
-                    this.currentPage = queryParms.page;
+                if (queryParms.page && queryParms.page <= numberOfPages) {
+                    this.currentPage = queryParms.page - 1;
                 }
                this.setCurrentPageBookmarks();
             });
@@ -39,21 +44,26 @@ export class BookmarkListComponent implements OnInit {
         this.currentPage = i;
     }
 
+    // Based on the current page and page size, set the bookmarks for the relevant page
     setCurrentPageBookmarks() {
-        const starterIndex = this.currentPage * 20;
+        const starterIndex = this.currentPage * pageSize;
         const currentPageBookmarks = this.bookmarks.slice(starterIndex, starterIndex + pageSize)
         this.currentPageBookmarksObject = currentPageBookmarks.map((bookmark) => ({url: bookmark, isEditing: false}));
     }
 
+    // Get the bookmarks using the bookmark service
     getBookmarks() {
         this.bookmarks = this.bookmarkService.getBookmarks();
     }
 
+    // When a user uses the pagination set the current page and then change the set of bookmarks to be displayed
     onPageChange(i) {
         this.setCurrentPage(i);
         this.setCurrentPageBookmarks();
     }
 
+    // When a user clicks a delete button, delete the bookmark using the bookmark service 
+    // and then change the set of bookmarks to be displayed
     deleteBookmark(bookmark) {
         this.bookmarks = this.bookmarkService.removeBookmark(bookmark);
         this.setCurrentPageBookmarks();

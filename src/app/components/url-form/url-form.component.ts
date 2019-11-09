@@ -27,6 +27,7 @@ export class UrlFormComponent implements OnInit {
 
     urlExistsValidator(control: AbstractControl) {
         let url = control.value;
+        // If the pattern is invalid, do not check if the url exists
         const urlPatternValid = !control.hasError('patern');
         if (url && urlPatternValid) {
             return fetch(url, {mode: "no-cors"})
@@ -41,19 +42,23 @@ export class UrlFormComponent implements OnInit {
     onSubmit() {
         const url = this.urlInput.value;
         try {
+            // If there was a url as input then replace that url within the bookmarks, if not create a new one
             if (this.url) {
                 this.bookmarkService.editBookmark(this.url, url);
             } else {
                 this.bookmarkService.addBookmark(url);
             }
+            // Navigate to submission result page
             this.router.navigate(['result'], { queryParams: { url: url } });
         } catch (error) {
+            // Display the error
             this.error = error;
         }
 
     }
 
     ngOnInit() {
+        // If a url input is present set the form control value to the url input value
         if (this.url) {
             this.urlInput.setValue(this.url);
         }
